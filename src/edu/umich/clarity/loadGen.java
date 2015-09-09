@@ -66,8 +66,8 @@ public class loadGen {
     public static void main(String[] args) {
  
         loadGen client = new loadGen();
-        client.genPoissonSamples(200, 1000);
-        client.genBurstSamples(100, 200, 1000);
+        client.genPoissonSamples(200, 10000);
+        client.genBurstSamples(100, 200, 10000);
     }
 
 
