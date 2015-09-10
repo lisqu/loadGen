@@ -1,63 +1,37 @@
 package edu.umich.clarity;
 
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.thrift.TException;
-
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
 public class loadGen {
     // common definition
-    public static final String AUDIO_PATH = "/input/distribution";
     private static final Logger LOG = Logger.getLogger(loadGen.class);
 
-    //private static int num_client = 10000;
-    private static int num_client;
-    private static final String LOAD_TYPE_EXPONENTIAL = "exponential";
-    private static final String LOAD_TYPE_POISSON = "poisson";
-    private static final String LOAD_TYPE_BURST = "burst";
-    //private static String loadType = LOAD_TYPE_POISSON;
-    private static String loadType;
     // for poisson load
-    //private static double poisson_mean = 1400;
-    private static double poisson_mean;
-    // private static String POISSON_SAMPLE_FILE = "poisson_sample_.6_1000.csv";
-    //private static String POISSON_SAMPLE_FILE = "poisson_sample_.8_1000.csv";
-    //private static String POISSON_SAMPLE_FILE = "poisson_sample_1.4_10000.csv";
-    private static String POISSON_SAMPLE_FILE="input/poisson.csv";
-
+    private static double poisson_target_mean=200;
+    private static double poisson_bg_mean=200;
+    private static String POISSON_TARGET_SAMPLE_FILE="input/target_load.csv";
+    private static String POISSON_BG_SAMPLE_FILE="input/bg_load.csv";
+    
     // for burst load
-    //private static double burst_high_mean = 600;
-    private static double burst_high_mean;
-    //private static double burst_low_mean = 1000;
-    private static double burst_low_mean;
-    //private static String BURST_HIGH_SAMPLE_FILE = "poisson_sample_.9_1000.csv";
+//    private static double burst_high_mean;
+//    private static double burst_low_mean;
     private static String BURST_HIGH_SAMPLE_FILE="input/burst_high.csv";
-    //private static String BURST_LOW_SAMPLE_FILE = "poisson_sample_1.4_1000.csv";
     private static String BURST_LOW_SAMPLE_FILE="input/burst_low.csv";
-    //private static int BURST_SWITCH_NUM = 200;
-    private static int BURST_SWITCH_NUM;
-    //private static float BURST_RATIO = 0.5f;
-    private static float BURST_RATIO;
-    //private static String OPERATION = "load";
-    //private static String OPERATION = "sample";
-    private static String OPERATION;
+//    private static int BURST_SWITCH_NUM;
+//    private static float BURST_RATIO;
+//    private static String OPERATION;
 
     public loadGen() {
         PropertyConfigurator.configure(System.getProperty("user.dir") + File.separator + "log4j.properties");
-        LOG.info("the operation mode is " + OPERATION);
-        LOG.info("the number of queries will be generated is " + num_client);
+//        LOG.info("the operation mode is " + OPERATION);
+//        LOG.info("the number of queries will be generated is " + num_client);
     }
 
     /**
@@ -66,16 +40,17 @@ public class loadGen {
     public static void main(String[] args) {
  
         loadGen client = new loadGen();
-        client.genPoissonSamples(200, 10000);
-        client.genBurstSamples(100, 200, 10000);
+        client.genPoissonSamples(poisson_target_mean, 10000, POISSON_TARGET_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_bg_mean, 10000, POISSON_BG_SAMPLE_FILE);
+//        client.genBurstSamples(100, 200, 10000);
+        LOG.info("Load generation completes");
     }
 
-
-    private void genPoissonSamples(double mean, int sampleNum) {
+    private void genPoissonSamples(double mean, int sampleNum, String sample_file) {
         PoissonDistribution poi_dist = new PoissonDistribution(mean);
         CSVWriter sampleWriter;
 		try {
-				sampleWriter = new CSVWriter(new FileWriter(POISSON_SAMPLE_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
+				sampleWriter = new CSVWriter(new FileWriter(sample_file), ',', CSVWriter.NO_QUOTE_CHARACTER);
 
             ArrayList<String> csvEntry = new ArrayList<String>();
             for (int i = 0; i < sampleNum; i++) {
@@ -113,38 +88,4 @@ public class loadGen {
 
         }
     }
-
-    /**
-     * Generate the load that follows Poisson distribution.
-     *
-     * @param mean       the poisson_mean time interval to submit each query
-     * @param num_client that submitting the query concurrently
-     */
-    public void genPoissonLoad(double mean, int num_client) {
-        PoissonDistribution poi_dist = new PoissonDistribution(mean);
-        for (int i = 0; i < num_client; i++) {
-            new Thread(new ConcurrentClient(poi_dist.sample(), Integer.toString(i))).start();
-        }
-    }
-
-    private class ConcurrentClient implements Runnable {
-        private static final String NEXT_STAGE = "asr";
-        private static final String SCHEDULER_IP = "localhost";
-        private static final int SCHEDULER_PORT = 8888;
-        private double nap_time;
-        private File[] audioFiles;
-        private String name;
-
-        public ConcurrentClient(double nap_time, String name) {
-            this.nap_time = nap_time;
-            this.name = name;
-            File audioDir = new File(AUDIO_PATH);
-            this.audioFiles = audioDir.listFiles();
-        }
-
-        @Override
-        public void run() {
-
-        }
-    }
-    }
+}
