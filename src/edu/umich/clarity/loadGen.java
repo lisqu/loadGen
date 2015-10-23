@@ -49,8 +49,8 @@ public class loadGen {
     private static String POISSON_CHK_TARGET_SAMPLE_FILE="input/chk_target_load.csv";
     private static String POISSON_CHK_BG_SAMPLE_FILE="input/chk_bg_load.csv";
 
-    private static double poisson_stemmer_target_mean=410;
-    private static double poisson_stemmer_bg_mean=150;
+    private static double poisson_stemmer_target_mean=210;
+    private static double poisson_stemmer_bg_mean=100;
     private static String POISSON_STEMMER_TARGET_SAMPLE_FILE="input/stemmer_target_load.csv";
     private static String POISSON_STEMMER_BG_SAMPLE_FILE="input/stemmer_bg_load.csv";
     
@@ -63,6 +63,68 @@ public class loadGen {
     private static double poisson_gmm_bg_mean=50;
     private static String POISSON_GMM_TARGET_SAMPLE_FILE="input/gmm_target_load.csv";
     private static String POISSON_GMM_BG_SAMPLE_FILE="input/gmm_bg_load.csv";
+
+//Rodinia workloads, backprop
+    private static double poisson_backprop_mean=250;
+    private static String POISSON_BACKPROP_SAMPLE_FILE="input/backprop_load.csv";    
+//Rodinia workloads, bfs
+    private static double poisson_bfs_mean=250;
+    private static String POISSON_BFS_SAMPLE_FILE="input/bfs_load.csv";    
+//Rodinia workloads, cfd
+    private static double poisson_cfd_mean=10;
+    private static String POISSON_CFD_SAMPLE_FILE="input/cfd_load.csv";    
+//Rodinia workloads, dwt2d
+    private static double poisson_dwt2d_mean=100;
+    private static String POISSON_DWT2D_SAMPLE_FILE="input/dwt2d_load.csv";    
+//Rodinia workloads, gaussian
+    private static double poisson_gaussian_mean=250;
+    private static String POISSON_GAUSSIAN_SAMPLE_FILE="input/gaussian_load.csv";    
+//Rodinia workloads, heartwall
+    private static double poisson_heartwall_mean=500;
+    private static String POISSON_HEARTWALL_SAMPLE_FILE="input/heartwall_load.csv";    
+//Rodinia workloads, hotspot
+    private static double poisson_hotspot_mean=100;
+    private static String POISSON_HOTSPOT_SAMPLE_FILE="input/hotspot_load.csv";    
+//Rodinia workloads, dwt2d
+    private static double poisson_hybridsort_mean=400;
+    private static String POISSON_HYBRIDSORT_SAMPLE_FILE="input/hybridsort_load.csv";    
+//Rodinia workloads, dwt2d
+    private static double poisson_kmeans_mean=400;
+    private static String POISSON_KMEANS_SAMPLE_FILE="input/kmeans_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_lavaMD_mean=200;
+    private static String POISSON_LAVAMD_SAMPLE_FILE="input/lavaMD_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_leukocyte_mean=500;
+    private static String POISSON_LEUKOCYTE_SAMPLE_FILE="input/leukocyte_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_lud_mean=10;
+    private static String POISSON_LUD_SAMPLE_FILE="input/lud_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_mummergpu_mean=50000;
+    private static String POISSON_MUMMERGPU_SAMPLE_FILE="input/mummergpu_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_myocyte_mean=100;
+    private static String POISSON_MYOCYTE_SAMPLE_FILE="input/myocyte_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_nn_mean=100;
+    private static String POISSON_NN_SAMPLE_FILE="input/nn_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_nw_mean=400;
+    private static String POISSON_NW_SAMPLE_FILE="input/nw_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_particlefilter_mean=150;
+    private static String POISSON_PARTICLEFILTER_SAMPLE_FILE="input/particlefilter_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_pathfinder_mean=250;
+    private static String POISSON_PATHFINDER_SAMPLE_FILE="input/pathfinder_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_srad_mean=50;
+    private static String POISSON_SRAD_SAMPLE_FILE="input/srad_load.csv";    
+  //Rodinia workloads, dwt2d
+    private static double poisson_streamcluster_mean=5000;
+    private static String POISSON_STREAMCLUSTER_SAMPLE_FILE="input/streamcluster_load.csv";    
+
     
     // for burst load
 //    private static double burst_high_mean;
@@ -114,6 +176,28 @@ public class loadGen {
         
         client.genPoissonSamples(poisson_gmm_target_mean, 10000, POISSON_GMM_TARGET_SAMPLE_FILE);
         client.genPoissonSamples(poisson_gmm_bg_mean, 10000, POISSON_GMM_BG_SAMPLE_FILE);
+
+//Rodinia
+        client.genPoissonSamples(poisson_backprop_mean, 10000, POISSON_BACKPROP_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_bfs_mean, 10000, POISSON_BFS_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_cfd_mean, 10000, POISSON_CFD_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_dwt2d_mean, 10000, POISSON_DWT2D_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_gaussian_mean, 10000, POISSON_GAUSSIAN_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_heartwall_mean, 10000, POISSON_HEARTWALL_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_hotspot_mean, 10000, POISSON_HOTSPOT_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_hybridsort_mean, 10000, POISSON_HYBRIDSORT_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_kmeans_mean, 10000, POISSON_KMEANS_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_lavaMD_mean, 10000, POISSON_LAVAMD_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_leukocyte_mean, 10000, POISSON_LEUKOCYTE_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_lud_mean, 10000, POISSON_LUD_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_mummergpu_mean, 10000, POISSON_MUMMERGPU_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_myocyte_mean, 10000, POISSON_MYOCYTE_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_nn_mean, 10000, POISSON_NN_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_nw_mean, 10000, POISSON_NW_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_particlefilter_mean, 10000, POISSON_PARTICLEFILTER_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_pathfinder_mean, 10000, POISSON_PATHFINDER_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_srad_mean, 10000, POISSON_SRAD_SAMPLE_FILE);
+        client.genPoissonSamples(poisson_streamcluster_mean, 10000, POISSON_STREAMCLUSTER_SAMPLE_FILE);
         
 //        client.genBurstSamples(100, 200, 10000);
         LOG.info("Load generation completes");
