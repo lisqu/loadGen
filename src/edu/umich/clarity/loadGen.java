@@ -71,7 +71,7 @@ public class loadGen {
     private static double poisson_bfs_mean=100;
     private static String POISSON_BFS_SAMPLE_FILE="input/bfs_load.csv";    
 //Rodinia workloads, cfd
-    private static double poisson_cfd_mean=10;
+    private static double poisson_cfd_mean=20;
     private static String POISSON_CFD_SAMPLE_FILE="input/cfd_load.csv";    
 //Rodinia workloads, dwt2d
     private static double poisson_dwt2d_mean=80;
@@ -80,7 +80,7 @@ public class loadGen {
     private static double poisson_gaussian_mean=200;
     private static String POISSON_GAUSSIAN_SAMPLE_FILE="input/gaussian_load.csv";    
 //Rodinia workloads, heartwall
-    private static double poisson_heartwall_mean=2000;
+    private static double poisson_heartwall_mean=1800;
     private static String POISSON_HEARTWALL_SAMPLE_FILE="input/heartwall_load.csv";    
 //Rodinia workloads, hotspot
     private static double poisson_hotspot_mean=100;
@@ -116,10 +116,10 @@ public class loadGen {
     private static double poisson_particlefilter_mean=100;
     private static String POISSON_PARTICLEFILTER_SAMPLE_FILE="input/particlefilter_load.csv";    
   //Rodinia workloads, pathfinder
-    private static double poisson_pathfinder_mean=150;
+    private static double poisson_pathfinder_mean=500;
     private static String POISSON_PATHFINDER_SAMPLE_FILE="input/pathfinder_load.csv";    
   //Rodinia workloads, srad
-    private static double poisson_srad_mean=100;
+    private static double poisson_srad_mean=150;
     private static String POISSON_SRAD_SAMPLE_FILE="input/srad_load.csv";    
   //Rodinia workloads, streamcluster
     private static double poisson_streamcluster_mean=3500;
